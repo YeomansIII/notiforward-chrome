@@ -7,7 +7,7 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -111,8 +111,7 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
-      chrome: {
-      },
+      chrome: {},
       dist: {
         files: [{
           dot: true,
@@ -152,6 +151,22 @@ module.exports = function (grunt) {
         src: [
           '<%= config.app %>/*.html'
         ]
+      }
+    },
+
+    // Copies js files from bower to appropriate vendor folder
+    bowercopy: {
+      options: {
+        srcPrefix: '<%= config.app %>/bower_components'
+      },
+      scripts: {
+        options: {
+          destPrefix: '<%= config.dist %>/scripts/vendor'
+        },
+        files: {
+          'firebase.js': 'firebase/firebase.js',
+          'jquery.min.js': 'jquery/dist/jquery.min.js'
+        }
       }
     },
 
@@ -233,15 +248,15 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= config.dist %>/scripts/scripts.js': [
-    //         '<%= config.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
+    uglify: {
+      dist: {
+        files: {
+          '<%= config.dist %>/scripts/background.js': [
+            '<%= config.dist %>/scripts/background.js'
+          ]
+        }
+      }
+    },
     // concat: {
     //   dist: {}
     // },
@@ -261,6 +276,8 @@ module.exports = function (grunt) {
             'styles/{,*/}*.css',
             'styles/fonts/{,*/}*.*',
             '_locales/{,*/}*.json',
+            'manifest.json',
+            'scripts/background.js'
           ]
         }]
       }
@@ -268,14 +285,12 @@ module.exports = function (grunt) {
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
-      chrome: [
-      ],
+      chrome: [],
       dist: [
         'imagemin',
         'svgmin'
       ],
-      test: [
-      ]
+      test: []
     },
 
     // Auto buildnumber, exclude debug files. smart builds that event pages
@@ -315,7 +330,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('debug', function () {
+  grunt.registerTask('debug', function() {
     grunt.task.run([
       'jshint',
       'babel',
@@ -333,13 +348,14 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'babel',
-    'chromeManifest:dist',
+    //'chromeManifest:dist',
     'useminPrepare',
     'concurrent:dist',
+    'bowercopy',
     'cssmin',
     'concat',
-    'uglify',
     'copy',
+    'uglify',
     'usemin',
     'compress'
   ]);

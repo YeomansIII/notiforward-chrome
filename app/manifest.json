@@ -1,9 +1,9 @@
 {
   "name": "__MSG_appName__",
-  "version": "0.0.4",
+  "version": "0.0.23",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
-  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'; img-src 'self'",
   "icons": {
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"
@@ -11,13 +11,16 @@
   "default_locale": "en",
   "background": {
     "scripts": [
-      "scripts/chromereload.js",
+      "scripts/vendor/firebase.js",
+      "scripts/vendor/jquery.min.js",
       "scripts/background.js"
-    ]
+    ],
+    "persistent": true
   },
   "permissions": [
     "notifications",
-    "storage"
+    "storage",
+    "background"
   ],
   "browser_action": {
     "default_icon": {

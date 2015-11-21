@@ -22,7 +22,7 @@
 
   <div id="mainPopup">
     <h1>Notiforward</h1>
-    <form>
+    <form id="auth-form">
       <label>Firebase Database:
         <br/>
         <input id="firebase-db" type="text">
@@ -38,12 +38,15 @@
         <input id="firebase-auth-password" type="password">
       </label>
       <br/>
-      <button id="set-auth">Set and Auth</button>
+      <input id="set-auth" type="submit" value="Set and Auth">
     </form>
+    <h4 id="auth-results"></h4>
   </div>
 
+  <script type="text/javascript" src="scripts/vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/vendor/firebase.js"></script>
   <!-- build:js scripts/popup.js -->
-  <script src="scripts/popup.js"></script>
+  <script type="text/javascript" src="scripts/popup.js"></script>
   <!-- endbuild -->
 </body>
 
