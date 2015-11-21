@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- build:css styles/popup-vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css styles/main.css -->
+  <link href="styles/main.css" rel="stylesheet">
+  <!-- endbuild -->
+</head>
+
+<body>
+  <h1>'Allo, 'Allo!</h1>
+
+  <!-- build:js scripts/popup-vendor.js -->
+  <!-- bower:js -->
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <div id="mainPopup">
+    <h1>Notiforward</h1>
+    <form>
+      <label>Firebase Database:
+        <br/>
+        <input id="firebase-db" type="text">
+      </label>
+      <br/>
+      <label>Email:
+        <br/>
+        <input id="firebase-auth-email" type="text">
+      </label>
+      <br/>
+      <label>Password:
+        <br/>
+        <input id="firebase-auth-password" type="password">
+      </label>
+      <br/>
+      <button id="set-auth">Set and Auth</button>
+    </form>
+  </div>
+
+  <!-- build:js scripts/popup.js -->
+  <script src="scripts/popup.js"></script>
+  <!-- endbuild -->
+</body>
+
+</html>
