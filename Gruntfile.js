@@ -165,7 +165,16 @@ module.exports = function(grunt) {
         },
         files: {
           'firebase.js': 'firebase/firebase.js',
-          'jquery.min.js': 'jquery/dist/jquery.min.js'
+          'jquery.min.js': 'jquery/dist/jquery.min.js',
+          'materialize.min.js': 'Materialize/dist/js/materialize.min.js'
+        }
+      },
+      css: {
+        options: {
+          destPrefix: '<%= config.dist %>/styles/vendor'
+        },
+        files: {
+          'materialize.min.css': 'Materialize/dist/css/materialize.min.css'
         }
       }
     },

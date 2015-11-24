@@ -10,6 +10,8 @@
   <!-- build:css styles/main.css -->
   <link href="styles/main.css" rel="stylesheet">
   <!-- endbuild -->
+  <link href="styles/vendor/materialize.min.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -18,7 +20,18 @@
   <!-- endbower -->
   <!-- endbuild -->
 
-  <div id="mainPopup">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Logo</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="auth-popup" style="display:none">
     <h1>Notiforward</h1>
     <form id="auth-form">
       <label>Firebase Database:
@@ -42,7 +55,37 @@
     <h4 id="auth-results"></h4>
   </div>
 
+  <div id="ignored-popup">
+    <h1>Notiforward</h1>
+    <h3>Ignored Apps</h3>
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Card Title</span>
+        <p>I am a very simple card. I am good at containing small bits of
+          information. I am convenient because I require little markup
+          to use effectively.</p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+        <a href="#">This is a link</a>
+      </div>
+    </div>
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <span class="card-title">Card Title</span>
+        <p>I am a very simple card. I am good at containing small bits of
+          information. I am convenient because I require little markup
+          to use effectively.</p>
+      </div>
+      <div class="card-action">
+        <a href="#">This is a link</a>
+        <a href="#">This is a link</a>
+      </div>
+    </div>
+  </div>
+
   <script type="text/javascript" src="scripts/vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/vendor/materialize.min.js"></script>
   <script type="text/javascript" src="scripts/vendor/firebase.js"></script>
   <!-- build:js scripts/popup.js -->
   <script type="text/javascript" src="scripts/popup.js"></script>

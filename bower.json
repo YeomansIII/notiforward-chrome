@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "dependencies": {
     "jquery": "~2.1.4",
-    "firebase": "~2.3.2"
+    "firebase": "~2.3.2",
+    "Materialize": "materialize#~0.97.3"
   },
   "devDependencies": {
     "chai": "~3.4.2",
