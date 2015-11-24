@@ -5,7 +5,7 @@
 var bgPage = chrome.extension.getBackgroundPage();
 $('#auth-form').submit(function() {
   //bgPage.showNotif('basic', '/icons/icon128.png', 'This Is A Notification', 'This is a message', function () {
-  //console.log('Succesful notification');
+  console.log('Submit form');
   var fDb = $('#firebase-db').val();
   var fUrl = 'https://' + fDb + '.firebaseio.com/';
   var email = $('#firebase-auth-email').val();
@@ -20,7 +20,14 @@ $('#auth-form').submit(function() {
     console.log('Settings saved');
     console.log(storages);
     bgPage.authenticate(email, pass);
+    //   $('#auth-results').html('Succesful Authentication');
+    // } else {
+    //   $('#auth-results').html('Authentication Error: Try Again');
+    // }
   });
   return false;
+});
+$('#unset-unauth').click(function() {
+  bgPage.unAuthenticate();
 });
 //# sourceMappingURL=popup.js.map
