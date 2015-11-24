@@ -161,7 +161,7 @@ module.exports = function(grunt) {
       },
       scripts: {
         options: {
-          destPrefix: '<%= config.dist %>/scripts/vendor'
+          destPrefix: '<%= config.dist %>/scripts/'
         },
         files: {
           'firebase.js': 'firebase/firebase.js',
@@ -171,10 +171,23 @@ module.exports = function(grunt) {
       },
       css: {
         options: {
-          destPrefix: '<%= config.dist %>/styles/vendor'
+          destPrefix: '<%= config.dist %>/styles/'
         },
         files: {
-          'materialize.min.css': 'Materialize/dist/css/materialize.min.css'
+          'materialize.min.css': 'Materialize/dist/css/materialize.min.css',
+          'materialdesignicons.min.css': 'mdi/css/materialdesignicons.min.css',
+        }
+      },
+      fonts: {
+        options: {
+          destPrefix: '<%= config.dist %>/fonts/'
+        },
+        files: {
+          'materialdesignicons-webfont.eot': 'mdi/fonts/materialdesignicons-webfont.eot',
+          'materialdesignicons-webfont.svg': 'mdi/fonts/materialdesignicons-webfont.svg',
+          'materialdesignicons-webfont.ttf': 'mdi/fonts/materialdesignicons-webfont.ttf',
+          'materialdesignicons-webfont.woff': 'mdi/fonts/materialdesignicons-webfont.woff',
+          'materialdesignicons-webfont.woff2': 'mdi/fonts/materialdesignicons-webfont.woff2'
         }
       }
     },
@@ -270,6 +283,18 @@ module.exports = function(grunt) {
     //   dist: {}
     // },
 
+    sass: {
+      build: {
+        options: {
+          sourceMap: true,
+          outputStyle: 'compressed'
+        },
+        files: {
+          '<%= config.dist %>/styles/main.css': '<%= config.app %>/styles/main.scss'
+        }
+      }
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -361,7 +386,7 @@ module.exports = function(grunt) {
     'useminPrepare',
     'concurrent:dist',
     'bowercopy',
-    'cssmin',
+    'sass',
     'concat',
     'copy',
     'uglify',

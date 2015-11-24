@@ -45,11 +45,13 @@
      'type': 'device_notif',
      'fbId': childSnapshot.key()
    };
+   var title = childSnapshot.child('title').val();
+   var text = childSnapshot.child('text').val();
    var options = {
      'type': 'basic',
      'iconUrl': 'images/icon-128.png',
-     'title': childSnapshot.child('title').val(),
-     'message': childSnapshot.child('text').val(),
+     'title': title !== null ? title : '',
+     'message': text !== null ? text : '',
      'buttons': [{
        'title': 'Dismiss'
      }, {
@@ -76,9 +78,9 @@
    console.log('previousVersion', details.previousVersion);
  });
 
- chrome.browserAction.setBadgeText({
-   text: 'Notiforward'
- });
+ // chrome.browserAction.setBadgeText({
+ //   text: 'Notiforward'
+ // });
 
  chrome.storage.onChanged.addListener(function(changes, namespace) {
    for (var key in changes) {

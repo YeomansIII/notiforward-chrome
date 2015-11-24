@@ -1,0 +1,36 @@
+body {
+  /*padding: 20px;*/
+  height: 600px;
+  width: 450px;
+}
+.nav-wrapper {
+  overflow: hidden;
+  a {
+    cursor: pointer;
+  }
+  i {
+    display: initial;
+    line-height: 56px;
+  }
+  .brand-logo.right {
+    padding: 0 15px;
+  }
+}
+.contained {
+  padding: 20px;
+}
+.auth-popup {
+  padding: 10px;
+  font-family: Helvetica, Ubuntu, Arial, sans-serif;
+}
+.cards {
+  max-height: 540px;
+  overflow-y: auto;
+}
+.card {
+  .card-content {
+    p {
+      font-size: 1.5em;
+    }
+  }
+}
