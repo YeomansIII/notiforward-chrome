@@ -8,4 +8,5 @@ test/bower_components
 package
 scripts/*.js
 scripts/*.map
-
+*.zip
+*.crx
