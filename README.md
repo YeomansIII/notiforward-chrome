@@ -20,3 +20,6 @@ The extension will now load into chrome. When you want to load changes, just run
 
 ## Set Up Firebase Database
 https://github.com/YeomansIII/notiforward-android/wiki/Notiforward-Setup-(Getting-Started)
+
+## Builds on Jenkins
+  - Development Builds: https://jenkins.yeomans.io/job/notiforward-chrome-dev/
