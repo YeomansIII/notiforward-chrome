@@ -1,7 +1,7 @@
 # Notiforward Chrome Extension
 
 ## Getting Started
-1. Clone the repo to your local machine using `git@github.com:YeomansIII/notiforward-chrome.git` or `https://github.com/YeomansIII/notiforward-chrome.git`
+1. Clone the repo to your local machine using HTTPS `git clone https://github.com/YeomansIII/notiforward-chrome.git` or SSH `git clone git@github.com:YeomansIII/notiforward-chrome.git`
 
 2. Install node.js and npm using Node Version Manager (https://github.com/creationix/nvm)
   - Run `nvm install 0.12.7`
