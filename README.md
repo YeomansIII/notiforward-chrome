@@ -17,3 +17,6 @@
   - Click "Load unpacked extension..." and navigate to the repo folder, then select the `dist/` folder
 
 The extension will now load into chrome. When you want to load changes, just run `grunt` in the terminal again.
+
+## Set Up Firebase Database
+https://github.com/YeomansIII/notiforward-android/wiki/Notiforward-Setup-(Getting-Started)
