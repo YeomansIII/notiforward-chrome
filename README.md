@@ -7,7 +7,7 @@
   - Run `nvm install 0.12.7`
   - You will need to run this command before working on the project every time
 
-3. Run `npm install -g grunt-cli grunt` `npm install`
+3. Run `npm install -g grunt-cli grunt` and `npm install`
 
 4. Run `bower install`
 
