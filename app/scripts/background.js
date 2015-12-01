@@ -82,54 +82,82 @@ chrome.runtime.onInstalled.addListener(function (details) {
 //   text: 'Notiforward'
 // });
 
-chrome.storage.onChanged.addListener(function (changes, namespace) {
-  for (var key in changes) {
-    if (key === 'firebase-url') {
-      setUpFirebase(changes[key].newValue);
-      if (ref.getAuth() === null) {
-        showSystemNotif('basic', 'images/icon-128.png', 'Authentication Error', 'Please log into your Firebase DB', null);
-      } else {
-        userRef = ref.child(ref.getAuth().uid);
-        setUpFirebaseListen();
-      }
-    }
-    var storageChange = changes[key];
-    console.log('Storage key "%s" in namespace "%s" changed. ' + 'Old value was "%s", new value is "%s".', key, namespace, storageChange.oldValue, storageChange.newValue);
-  }
-});
+// chrome.storage.onChanged.addListener(function(changes, namespace) {
+//   for (var key in changes) {
+//     if (key === 'firebase-url') {
+//       setUpFirebase(changes[key].newValue);
+//       if (ref.getAuth() === null) {
+//         showSystemNotif('basic', 'images/icon-128.png', 'Authentication Error', 'Please log into your Firebase DB', null);
+//       } else {
+//         userRef = ref.child(ref.getAuth().uid);
+//         setUpFirebaseListen();
+//       }
+//     }
+//     var storageChange = changes[key];
+//     console.log('Storage key "%s" in namespace "%s" changed. ' +
+//       'Old value was "%s", new value is "%s".',
+//       key,
+//       namespace,
+//       storageChange.oldValue,
+//       storageChange.newValue);
+//   }
+// });
 
 chrome.storage.sync.get('firebase-url', function (items) {
+  console.log('syncing settings');
   if (items['firebase-url'] !== undefined) {
     setUpFirebase(items['firebase-url']);
-    if (ref.getAuth() === null) {
+    if (ref.getAuth() === null || ref.getAuth() === undefined) {
       showSystemNotif('basic', 'images/icon-128.png', 'Authentication Error', 'Please log into your Firebase DB', null);
     } else {
       userRef = ref.child(ref.getAuth().uid);
       setUpFirebaseListen();
     }
+  } else {
+    showSystemNotif('basic', 'images/icon-128.png', 'Authentication Error', 'Please log into your Firebase DB', null);
   }
 });
 
-function authenticate(email, pass) {
+function authenticate(fDb, fUrl, email, pass, $result) {
+  ref = new Firebase(fUrl);
   console.log('Authing: ' + ref);
   ref.authWithPassword({
     'email': email,
     'password': pass
   }, function (error, authData) {
     if (error) {
+      ref = undefined;
       console.log('Login Failed!', error);
-      //return false;
+      $result.html('Authentication Failed');
     } else {
-        console.log('Authenticated successfully with payload:', authData);
-        userRef = ref.child(ref.getAuth().uid);
-        setUpFirebaseListen();
-        showSystemNotif('basic', 'images/icon-128.png', 'Succesful Authentication', 'You will now receive notifications from attatched devices', null);
-        //return true;
-      }
+      var storages = {
+        'firebase-db': fDb,
+        'firebase-url': fUrl,
+        'firebase-email': email
+      };
+      console.log('Authenticated successfully with payload:', authData);
+      chrome.storage.sync.set(storages, function () {
+        // Notify that we saved.
+        console.log('Settings saved');
+        console.log(storages);
+      });
+      userRef = ref.child(ref.getAuth().uid);
+      showSystemNotif('basic', 'images/icon-128.png', 'Succesful Authentication', 'You will now receive notifications from attatched devices', null);
+      $result.html('Successful Authentication');
+      setUpFirebaseListen();
+    }
   });
 }
 
-function unAuthenticate() {
+function unAuthenticate(wind) {
+  console.log('unauthing');
   ref.unauth();
+  ref = undefined;
+  userRef = undefined;
+  chrome.storage.sync.remove(['firebase-db', 'firebase-url', 'firebase-email'], function () {
+    console.log('storage removed');
+  });
+  showSystemNotif('basic', 'images/icon-128.png', 'Notiforward Unauthenticated', 'You will no longer receive notifications on this device', null);
+  wind.close();
 }
 //# sourceMappingURL=background.js.map

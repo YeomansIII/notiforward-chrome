@@ -30,8 +30,27 @@ $('#ignored-nav').click(function() {
     $ignoredPopup.show();
   }
 });
-
-if (ref === null || ref.getAuth() === null) {
+console.log('setting login submit');
+$('#auth-form').submit(function() {
+  //bgPage.showNotif('basic', '/icons/icon128.png', 'This Is A Notification', 'This is a message', function () {
+  console.log('Submit form');
+  var fDb = $('#firebase-db').val();
+  var fUrl = 'https://' + fDb + '.firebaseio.com/';
+  var email = $('#firebase-auth-email').val();
+  var pass = $('#firebase-auth-password').val();
+  bgPage.authenticate(fDb, fUrl, email, pass, $('#auth-results'));
+  return false;
+});
+console.log('setting logout onclick');
+$('#unset-unauth').click(function() {
+  console.log('unauthing');
+  ref = undefined;
+  userRef = undefined;
+  bgPage.unAuthenticate(window);
+  return false;
+});
+console.log(ref);
+if (ref === undefined || ref.getAuth() === undefined) {
   $notifPopup.hide();
   $ignoredPopup.hide();
   $settingsPopup.show();
@@ -102,32 +121,4 @@ if (ref === null || ref.getAuth() === null) {
     $temp.closest('.card').hide();
   });
 }
-
-$('#auth-form').submit(function() {
-  //bgPage.showNotif('basic', '/icons/icon128.png', 'This Is A Notification', 'This is a message', function () {
-  console.log('Submit form');
-  var fDb = $('#firebase-db').val();
-  var fUrl = 'https://' + fDb + '.firebaseio.com/';
-  var email = $('#firebase-auth-email').val();
-  var pass = $('#firebase-auth-password').val();
-  var storages = {
-    'firebase-db': fDb,
-    'firebase-url': fUrl,
-    'firebase-email': email
-  };
-  chrome.storage.sync.set(storages, function() {
-    // Notify that we saved.
-    console.log('Settings saved');
-    console.log(storages);
-    bgPage.authenticate(email, pass);
-    //   $('#auth-results').html('Succesful Authentication');
-    // } else {
-    //   $('#auth-results').html('Authentication Error: Try Again');
-    // }
-  });
-  return false;
-});
-$('#unset-unauth').click(function() {
-  bgPage.unAuthenticate();
-});
 //# sourceMappingURL=popup.js.map
