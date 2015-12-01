@@ -1,4 +1,4 @@
-# Notiforward Chrome Extension
+# Notiforward Chrome Extension  [![Jenkins](https://img.shields.io/jenkins/s/https/jenkins.yeomans.io/notiforward-chrome-dev.svg?style=flat-square)](https://jenkins.yeomans.io/job/notiforward-chrome-dev/)
 
 ## Getting Started
 1. Clone the repo to your local machine using HTTPS `git clone https://github.com/YeomansIII/notiforward-chrome.git` or SSH `git clone git@github.com:YeomansIII/notiforward-chrome.git`
