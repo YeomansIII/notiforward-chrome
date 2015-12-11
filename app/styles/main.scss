@@ -1,19 +1,32 @@
+$white: #fff;
+$black: #000;
+$gray3: #333;
+$gray7: #777;
+$grayc: #ccc;
+$pearlblue: #e3e1f6;
+$seafrost: #94bac7;
+$heromode: #57387b;
+$purplerain: #4a3264;
+$otherside: #412f49;
 body {
   /*padding: 20px;*/
   height: 600px;
   width: 450px;
 }
-.nav-wrapper {
-  overflow: hidden;
-  a {
-    cursor: pointer;
-  }
-  i {
-    display: initial;
-    line-height: 56px;
-  }
-  .brand-logo.right {
-    padding: 0 15px;
+nav {
+  background-color: $seafrost;
+  .nav-wrapper {
+    overflow: hidden;
+    a {
+      cursor: pointer;
+    }
+    i {
+      display: initial;
+      line-height: 56px;
+    }
+    .brand-logo.right {
+      padding: 0 15px;
+    }
   }
 }
 .contained {

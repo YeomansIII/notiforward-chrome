@@ -30,9 +30,11 @@ chrome.notifications.onButtonClicked.addListener(function (notificationId, butto
   if (notifObj.type === 'device_notif') {
     if (buttonIndex === 0) {
       userRef.child('notifications/' + notifObj.fbId).remove();
+      chrome.notifications.clear(notificationId);
     } else if (buttonIndex === 1) {
       userRef.child('notifications/' + notifObj.fbId).once('value', function (dataSnapshot) {
         userRef.child('ignored_apps/' + dataSnapshot.child('package').val()).set(true);
+        chrome.notifications.clear(notificationId);
       });
     }
   }

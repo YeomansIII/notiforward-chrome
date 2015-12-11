@@ -1,6 +1,6 @@
 {
   "name": "Notiforward",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "manifest_version": 2,
   "description": "Notiforward is an open-source notification forwarding platform that uses your own database that you control.",
   "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://*.firebaseio-demo.com; object-src 'self'; img-src 'self'",
