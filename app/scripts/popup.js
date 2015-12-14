@@ -90,6 +90,11 @@ if (ref === undefined || ref.getAuth() === undefined) {
     userRef.child('ignored_apps/' + $temp.data('key')).remove();
     $temp.closest('.card').hide();
   });
+  $('#clear-clientid').click(function () {
+    chrome.storage.sync.remove('clientid', function () {
+      console.log('storage removed');
+    });
+  });
 }
 //# sourceMappingURL=popup.js.map
 //# sourceMappingURL=popup.js.map
